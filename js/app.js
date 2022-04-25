@@ -15,20 +15,20 @@ function addItem(event) {
 
     //VERIFICAÇÃO
     if (shopInput.value == "") {
-        window.alert("Preencha o campo *Descrição*");
+        window.alert("Obrigatório o preenchimento do campo.");
     } else {
 
         //ITEM DIV
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('item');
 
-
+        
         //CHECKBOX MARK
-        const checkBox = document.createElement('label');
+        const checkBox = document.createElement('button');
         checkBox.innerHTML = '<input type="checkbox">';
         checkBox.classList.add("checkbox");
         itemDiv.appendChild(checkBox);
-
+        
         /*
         //CHECK MARK BUTTON
         const completedButton = document.createElement('button');
@@ -39,7 +39,7 @@ function addItem(event) {
 
         //LI
         const newItem = document.createElement('li');
-        newItem.innerText = shopInput.value.trim();
+        newItem.innerText = shopInput.value;
         newItem.classList.add('shop-item');
         itemDiv.appendChild(newItem);
 
@@ -69,6 +69,6 @@ function deleteItem(e) {
     //CHECK MARK
     if (item.classList[0] === 'complete-btn') {
         const shop = item.parentElement;
-        shop.classList.toogle('checkbox');
+        shop.classList.toogle('checkbox');       
     }
 }
