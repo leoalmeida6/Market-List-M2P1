@@ -13,46 +13,62 @@ function addItem(event) {
     //Prevent form from submitting
     event.preventDefault();
 
-    //ITEM DIV
-    const itemDiv = document.createElement('div');
-    itemDiv.classList.add('item');
+    //VERIFICAÇÃO
+    if (shopInput.value == "") {
+        window.alert("Preencha o campo *Descrição*");
+    } else {
 
-    //CHECK MARK BUTTON
-    const completedButton = document.createElement('button');
-    completedButton.innerHTML = '<input type="checkbox">';
-    completedButton.classList.add("complete-btn");
-    itemDiv.appendChild(completedButton);
+        //ITEM DIV
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('item');
 
-    //LI
-    const newItem = document.createElement('li');
-    newItem.innerText = shopInput.value;
-    newItem.classList.add('shop-item');
-    itemDiv.appendChild(newItem);
 
-    //CHECK TRASH BUTTON
-    const trashButton = document.createElement('button');
-    trashButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
-    trashButton.classList.add("trash-btn");
-    itemDiv.appendChild(trashButton);
-    
-    //APPEND TO LIST
-    shopList.appendChild(itemDiv);
+        //CHECKBOX MARK
+        const checkBox = document.createElement('label');
+        checkBox.innerHTML = '<input type="checkbox">';
+        checkBox.classList.add("checkbox");
+        itemDiv.appendChild(checkBox);
 
-    //CLEAR INPUT
-    shopInput.value = "";
+        /*
+        //CHECK MARK BUTTON
+        const completedButton = document.createElement('button');
+        completedButton.innerHTML = '<input type="checkbox">';
+        completedButton.classList.add("complete-btn");
+        itemDiv.appendChild(completedButton);
+        */
+
+        //LI
+        const newItem = document.createElement('li');
+        newItem.innerText = shopInput.value.trim();
+        newItem.classList.add('shop-item');
+        itemDiv.appendChild(newItem);
+
+        //CHECK TRASH BUTTON
+        const trashButton = document.createElement('button');
+        trashButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+        trashButton.classList.add("trash-btn");
+        itemDiv.appendChild(trashButton);
+
+        //APPEND TO LIST
+        shopList.appendChild(itemDiv);
+
+        //CLEAR INPUT
+        shopInput.value = "";
+
+    }
 }
 
 function deleteItem(e) {
     const item = e.target;
     //DELETE ITEM
-    if(item.classList[0] === 'trash-btn'){
+    if (item.classList[0] === 'trash-btn') {
         const shop = item.parentElement;
         shop.remove();
     }
-    
+
     //CHECK MARK
-    if(item.classList[0] === 'complete-btn'){
+    if (item.classList[0] === 'complete-btn') {
         const shop = item.parentElement;
-        shop.classList.toogle('completed');
+        shop.classList.toogle('checkbox');
     }
 }

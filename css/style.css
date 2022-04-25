@@ -15,7 +15,7 @@ body {
 }
 
 header {
-    font-size: 1.5rem;
+    font-size: 2.5rem;
 }
 
 header,
@@ -28,7 +28,7 @@ form {
 form input,
 form button {
     padding: 0.5rem;
-    font-size: 1rem;
+    font-size: 2rem;
     border: none;
     background: white;
 }
@@ -46,8 +46,8 @@ form button:hover {
 }
 
 /* CLASSES */
-
 .shop-container {
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,10 +62,16 @@ form button:hover {
     margin: 0.5rem;
     background: white;
     color: black;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.item:hover, .trash-btn:hover {
+    background: #e4e4e4;
+    color: black;
+    transition: 0.7s;
 }
 
 .item li {
@@ -73,38 +79,30 @@ form button:hover {
 }
 
 .shop-item {
-    background: transparent;
-    outline: 0;
-    border-width: 0 0 2px;
-    border-color: #064FA8;
+    padding: 0 5px;
 }
 
 [type=checkbox] {
-    width: 1.3rem;
-    height: 1.3rem;
+    width: 1.2rem;
+    height: 1.2rem;
 
     color: dodgerblue;
     vertical-align: middle;
-    background: none;
-    border: 0;
-    outline: 0;
-    flex-grow: 0;
-    background-color: white;
     transition: 300ms;
     cursor: pointer;
 }
 
-.checked {
-    text-decoration: line-through;
-    opacity: 0.5s;
+label.checkbox {
+    padding: 0 10px;
 }
 
 .trash-btn {
     height: 36px;
     width: 30px;
-
+    padding: 0 10px;
+    
     color: #F0544F;
-    background: white;
+    background: transparent;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -112,9 +110,4 @@ form button:hover {
 
 .fa-trash {
     pointer-events: none;
-}
-
-.completed {
-    text-decoration: line-through;
-    opacity: 0.5s;
 }
