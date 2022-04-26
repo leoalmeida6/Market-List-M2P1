@@ -2,19 +2,21 @@
 const shopInput = document.querySelector(".shop-input");
 const shopButton = document.querySelector(".shop-button");
 const shopList = document.querySelector(".shop-list");
+const priceContainer = document.querySelector(".price-container");
 
-    //DarkMode
-    const toggle = document.querySelector("#toggle");
-    const areaHeader = document.querySelector(".area-header");
-    const areaMain = document.querySelector(".area-main");
-    const areaFooter = document.querySelector(".area-footer");
+//DarkMode
+const toggle = document.querySelector("#toggle");
+const areaHeader = document.querySelector(".area-header");
+const areaMain = document.querySelector(".area-main");
+const areaFooter = document.querySelector(".area-footer");
 
 // EVENTOS
 shopButton.addEventListener('click', addItem);
 shopList.addEventListener('click', deleteItem);
+priceContainer.addEventListener('click', addPrice);
 
 // FUNÇÕES
-toggle.onclick = function() {
+toggle.onclick = function () {
     toggle.classList.toggle('active');
     areaHeader.classList.toggle('active');
     areaMain.classList.toggle('active');
@@ -28,15 +30,15 @@ function addItem(event) {
     event.preventDefault();
 
     //VERIFICAÇÃO
-    if (shopInput.value == "") {
-        window.alert("Obrigatório o preenchimento da descrição do item.");
+    if (shopInput.value == "" || shopInput.value.trim() == "") {
+        window.alert("Item sem descrição! Por favor, informe a descrição do item.");
     } else {
 
         //ITEM DIV
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('item');
 
-        
+
         //CHECKBOX MARK
         const checkBox = document.createElement('button');
         checkBox.innerHTML = '<input type="checkbox">';
@@ -48,6 +50,9 @@ function addItem(event) {
         newItem.innerText = shopInput.value;
         newItem.classList.add('shop-item');
         itemDiv.appendChild(newItem);
+
+        //INPUT PRICE
+        //addPrice();        
 
         //CHECK TRASH BUTTON
         const trashButton = document.createElement('button');
@@ -74,6 +79,18 @@ function deleteItem(e) {
     //CHECK MARK
     if (item.classList[0] === 'complete-btn') {
         const shop = item.parentElement;
-        shop.classList.toogle('active');       
+        shop.classList.toogle('active');
     }
+}
+
+function addPrice(e) {
+
+    //Prevent form from submitting
+    event.preventDefault();
+
+    //CREATE DIV
+    let price = window.prompt("Informe o valor do item: R$ ");
+    const priceDiv = document.createElement('span');
+    priceDiv.classList.add(price);
+
 }

@@ -27,7 +27,12 @@ form button {
     background: white;
 }
 
+form input {
+    width: 45%;
+}
+
 form button {
+    width: 5%;
     color: #00C89B;
     background: white;
     cursor: pointer;
@@ -79,7 +84,7 @@ form button:hover {
     width: 80px;
     height: 40px;
     border-radius: 160px;
-    background: #fff;
+    background: 00c89b;
     transition: 0.5s;
     cursor: pointer;
     box-shadow: 
@@ -112,7 +117,7 @@ form button:hover {
 
 #toggle.active .indicator {
     left: 40px;
-    background: linear-gradient(to bottom, #444, #222);
+    background: linear-gradient(to bottom, #F7931E, #cc7819);
     box-shadow: 0 8px 40px rgba(0,0,0,0.5),
             inset 0 4px 4px rgba(255,255,255,0.2),
              inset 0 -4px 4px rgba(255,255,255,0.2);
@@ -191,6 +196,10 @@ form button.active:hover {
 }
 
 /* ======= LOGO ======= */
+.logo-market {
+    height: 15vh;
+}
+
 .mod-img {
     height: 35px;
     width: 35px;
@@ -201,16 +210,11 @@ form button.active:hover {
     width: 35px;
 }
 
-/* ======= LOGO =======*/
-.logo-market {
-    height: 15vh;
-}
-
 /* ======= LISTA =======*/
 .shop-container {
     padding: 3rem;
 
-    display: flex;
+    display: table-cell;
     justify-content: center;
     align-items: center;
 }
@@ -276,6 +280,24 @@ form button.active:hover {
 .fa-trash {
     pointer-events: none;
 }
+
+/* ======= PRICE CONTAINER - TESTE ======= */
+.price-container {
+    height: 25vh;
+    width: 15%;
+    float: right;
+    margin-right: 13.5%;
+    background: red;
+}
+
+.item-price div {
+    height: 2rem;
+    width: 2rem;
+    background: blue;
+    float: right;
+    margin-right: 13.5%;
+}
+/* ======= PRICE CONTAINER - TESTE ======= */
 
 
 /* ======= ANIMATION ======= */
