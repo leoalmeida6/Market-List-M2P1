@@ -4,7 +4,7 @@ const shopButton = document.querySelector(".shop-button");
 const shopList = document.querySelector(".shop-list");
 const priceContainer = document.querySelector(".price-container");
 
-//DarkMode
+//Seletores do DarkMode
 const toggle = document.querySelector("#toggle");
 const areaHeader = document.querySelector(".area-header");
 const areaMain = document.querySelector(".area-main");
@@ -14,6 +14,8 @@ const areaFooter = document.querySelector(".area-footer");
 shopButton.addEventListener('click', addItem);
 shopList.addEventListener('click', deleteItem);
 priceContainer.addEventListener('click', addPrice);
+
+/* ==============================================================*/
 
 // FUNÇÕES
 toggle.onclick = function () {
@@ -29,7 +31,7 @@ function addItem(event) {
     //Prevent form from submitting
     event.preventDefault();
 
-    //VERIFICAÇÃO
+    //VERIFICAÇÃO: Campo vazio e entrada vazia
     if (shopInput.value == "" || shopInput.value.trim() == "") {
         window.alert("Item sem descrição! Por favor, informe a descrição do item.");
     } else {
@@ -38,10 +40,9 @@ function addItem(event) {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('item');
 
-
         //CHECKBOX MARK
         const checkBox = document.createElement('button');
-        checkBox.innerHTML = '<input type="checkbox">';
+        checkBox.innerHTML = '<input type="checkbox" class="checkbox">';
         checkBox.classList.add("complete-btn");
         itemDiv.appendChild(checkBox);
 
@@ -86,11 +87,9 @@ function deleteItem(e) {
 function addPrice(e) {
 
     //Prevent form from submitting
-    event.preventDefault();
+    e.preventDefault();
 
     //CREATE DIV
     let price = window.prompt("Informe o valor do item: R$ ");
-    const priceDiv = document.createElement('span');
-    priceDiv.classList.add(price);
-
 }
+
