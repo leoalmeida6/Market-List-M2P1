@@ -10,17 +10,6 @@
 body {
     min-height: 100vh;
     width: 100%;
-    background-color: #00c89b;
-    color: white;
-}
-
-header {
-    padding: 2rem;
-    font-size: 2.5rem;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 form {
@@ -31,14 +20,15 @@ form {
 
 form input,
 form button {
+    margin-top: 2rem;
     padding: 0.5rem;
-    font-size: 2rem;
+    font-size: 1.5rem;
     border: none;
     background: white;
 }
 
 form button {
-    color: lightskyblue;
+    color: #00C89B;
     background: white;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -46,19 +36,115 @@ form button {
 
 form button:hover {
     color: white;
-    background: lightskyblue;
+    background: #00C89B;
 }
 
-/* CLASSES */
+/* ======= CLASSES ======= */
 
-.logo-dih {
-    height: 8vh;
+/* ======= DARK MODE BUTTON =======*/
+.mode-btn {
+    height: 35px;
+    width: 70px;
+    border: 4px solid #FFF;
+    border-radius: 60px;
+    position: relative;
+    cursor: pointer;
 }
 
+.mode-btn:before {
+    content: '';
+    position: absolute;
+    float: right;
+    height: 25px;
+    width: 25px;
+    background: #EE0111;
+    border-radius: 50%;
+    top: 50%;
+    left: 1px;
+    transform: translateY(-50%);
+    transition: 0.7s;
+}
+
+.mode-btn.active:before {
+    background: green;
+    left: 35px;
+    transition: 0.7s;
+}
+
+/* ======= DARK MODE - HEADER =======*/
+.area-header {
+    height: 20vh;
+    width: 100%;
+
+    padding: 2rem;
+    font-size: 2.5rem;
+
+    background: #00c89b;
+    transition: 0.7s;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.area-header.active {
+    background: black;
+    transition: 0.7s;
+}
+
+/* ======= DARK MODE - MAIN =======*/
+.area-main {
+    height: 70vh;
+    width: 100%;
+    background: #e5e8e8;
+    transition: 0.7s;
+}
+
+.area-main.active {
+    background: rgb(26, 26, 26);
+    color: #F7931E;
+    transition: 0.7s;
+}
+
+/* ======= DARK MODE - FOOTER =======*/
+.area-footer {
+    height: 10vh;
+    width: 100%;
+
+    font-size: 0.8rem;
+
+    background: #e5e8e8;
+    transition: 0.7s;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.area-footer.active {
+    background: rgb(26, 26, 26);
+    color: #F7931E;
+    transition: 0.7s;
+}
+
+/* ======= LOGO ======= */
+.mod-img {
+    height: 35px;
+    width: 35px;
+}
+
+.logo-senior {
+    height: 35px;
+    width: 35px;
+}
+
+/* ======= LOGO =======*/
 .logo-market {
     height: 15vh;
 }
 
+/* ======= LISTA =======*/
 .shop-container {
     padding: 3rem;
 
@@ -82,7 +168,8 @@ form button:hover {
     align-items: center;
 }
 
-.item:hover, .trash-btn:hover {
+.item:hover,
+.trash-btn:hover {
     background: #2F2F2F;
     color: white;
     transition: 0.7s;
@@ -106,7 +193,7 @@ form button:hover {
     cursor: pointer;
 }
 
-button.checkbox {
+.complete-btn {
     border: none;
     background: none;
     padding: 0 10px;
@@ -116,7 +203,7 @@ button.checkbox {
     height: 36px;
     width: 30px;
     padding: 0 10px;
-    
+
     color: #F0544F;
     background: transparent;
     border: none;
@@ -126,6 +213,22 @@ button.checkbox {
 
 .fa-trash {
     pointer-events: none;
+}
+
+
+/* ======= ANIMATION ======= */
+.my-element {
+    display: inline-block;
+    margin: 0 0.5rem;
+
+    animation: pulse 3s infinite;
+}
+
+.senior-animation {
+    display: inline-block;
+    margin: 0 0.5rem;
+
+    animation: bounce 3s infinite;
 }
 
 /*

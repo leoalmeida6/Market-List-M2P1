@@ -3,11 +3,25 @@ const shopInput = document.querySelector(".shop-input");
 const shopButton = document.querySelector(".shop-button");
 const shopList = document.querySelector(".shop-list");
 
+//DarkMode
+const modeBtn = document.querySelector(".mode-btn");
+const areaHeader = document.querySelector(".area-header");
+const areaMain = document.querySelector(".area-main");
+const areaFooter = document.querySelector(".area-footer");
+
 // EVENTOS
 shopButton.addEventListener('click', addItem);
 shopList.addEventListener('click', deleteItem);
 
 // FUNÇÕES
+
+modeBtn.onclick = function() {
+    this.classList.toggle('active');
+    areaHeader.classList.toggle('active');
+    areaMain.classList.toggle('active');
+    areaFooter.classList.toggle('active');
+}
+
 function addItem(event) {
 
     //Prevent form from submitting
@@ -15,7 +29,7 @@ function addItem(event) {
 
     //VERIFICAÇÃO
     if (shopInput.value == "") {
-        window.alert("Obrigatório o preenchimento do campo.");
+        window.alert("Obrigatório o preenchimento da descrição do item.");
     } else {
 
         //ITEM DIV
@@ -26,16 +40,8 @@ function addItem(event) {
         //CHECKBOX MARK
         const checkBox = document.createElement('button');
         checkBox.innerHTML = '<input type="checkbox">';
-        checkBox.classList.add("checkbox");
+        checkBox.classList.add("complete-btn");
         itemDiv.appendChild(checkBox);
-        
-        /*
-        //CHECK MARK BUTTON
-        const completedButton = document.createElement('button');
-        completedButton.innerHTML = '<input type="checkbox">';
-        completedButton.classList.add("complete-btn");
-        itemDiv.appendChild(completedButton);
-        */
 
         //LI
         const newItem = document.createElement('li');
@@ -54,7 +60,6 @@ function addItem(event) {
 
         //CLEAR INPUT
         shopInput.value = "";
-
     }
 }
 
@@ -69,6 +74,6 @@ function deleteItem(e) {
     //CHECK MARK
     if (item.classList[0] === 'complete-btn') {
         const shop = item.parentElement;
-        shop.classList.toogle('checkbox');       
+        shop.classList.toogle('active');       
     }
 }
