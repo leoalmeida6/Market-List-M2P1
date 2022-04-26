@@ -3,23 +3,23 @@ const shopInput = document.querySelector(".shop-input");
 const shopButton = document.querySelector(".shop-button");
 const shopList = document.querySelector(".shop-list");
 
-//DarkMode
-const modeBtn = document.querySelector(".mode-btn");
-const areaHeader = document.querySelector(".area-header");
-const areaMain = document.querySelector(".area-main");
-const areaFooter = document.querySelector(".area-footer");
+    //DarkMode
+    const toggle = document.querySelector("#toggle");
+    const areaHeader = document.querySelector(".area-header");
+    const areaMain = document.querySelector(".area-main");
+    const areaFooter = document.querySelector(".area-footer");
 
 // EVENTOS
 shopButton.addEventListener('click', addItem);
 shopList.addEventListener('click', deleteItem);
 
 // FUNÇÕES
-
-modeBtn.onclick = function() {
-    this.classList.toggle('active');
+toggle.onclick = function() {
+    toggle.classList.toggle('active');
     areaHeader.classList.toggle('active');
     areaMain.classList.toggle('active');
     areaFooter.classList.toggle('active');
+    shopButton.classList.toggle('active');
 }
 
 function addItem(event) {
