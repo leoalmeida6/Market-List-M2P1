@@ -29,11 +29,11 @@ form button {
 }
 
 form input {
-    width: 45%;
+    width: 35%;
 }
 
 form button {
-    width: 5%;
+    width: 50px;
     color: #00C89B;
     background: white;
     cursor: pointer;
@@ -43,6 +43,21 @@ form button {
 form button:hover {
     color: white;
     background: #00C89B;
+}
+
+select {
+    width: 10rem;
+
+    padding: 1rem;
+
+    color: black;
+    cursor: pointer;
+
+    border: none;
+    outline: none;
+    
+    -webkit-appearance: none;
+    -moz-appearance: none;    
 }
 
 /* ======= CLASSES ======= */
@@ -183,8 +198,9 @@ form button.active:hover {
 /* ======= LISTA =======*/
 .shop-container {
     padding: 3rem;
+    width: 50%;
 
-    display: table-cell;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
@@ -214,31 +230,44 @@ form button.active:hover {
     padding: 0 5px;
 }
 
-.checkbox-btn,
-.trash-btn {
+.checkbox-btn {
     height: 36px;
     width: 30px;
 
-    color: white;
-    background: #F0544F;
+    color: #00C89B;
+    background: white;
+    transition: 0.7s;
+    
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.checkbox-btn {
-    background: #00C89B;
-    color: white;
+.trash-btn {
+    height: 36px;
+    width: 30px;
+
+    color: #F0544F;
+    background: white;
+
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.checkbox-btn.active:hover,
-.trash-btn.active:hover {
-    background: #F7931E;
+.checkbox-btn:hover {
+    background: #00C89B;
     color: white;
     transition: 0.7s;
 }
 
-.fa-trash {
+.trash-btn:hover {
+    color: white;
+    background: #F0544F;
+    transition: 0.7s;
+}
+
+.fa-check, .fa-trash {
     pointer-events: none;
 }
 
@@ -247,13 +276,68 @@ form button.active:hover {
     opacity: 0.5;
 }
 
+/* Animation when delete item*/
+.moved {
+    transform: translate(15rem);
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.select {
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+    top: 1rem
+}
+
+.select::after {
+    content: "\25BC";
+    
+    background: white;
+    color: #00C89B;
+    
+    position: absolute;
+    top: 0;
+    right: 0;
+    
+    padding: 1rem;
+    
+    pointer-events: none;
+    position: all 0.3s ease;
+}
+
+.select:hover::after {
+    background: #00C89B;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.select.active::after {
+    background: white;
+    color: #F7931E;
+    transition: all 0.3s ease;
+}
+
+.select.active:hover::after {
+    background: #F7931E;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+
+
 /* ======= PRICE CONTAINER - TESTE ======= */
 .price-container {
-    height: 25vh;
-    width: 15%;
-    float: right;
-    margin-right: 13.5%;
+    height: 17vh;
+    width: 17vw;
+
+
     background: red;
+    color: white;
+
+    position: fixed;
+    top: 42rem;
+    right: 3rem;
 }
 
 .item-price div {

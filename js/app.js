@@ -5,15 +5,17 @@ const shopList = document.querySelector(".shop-list");
 const priceContainer = document.querySelector(".price-container");
 
 //Seletores do DarkMode
-const toggle = document.querySelector("#toggle");
-const areaHeader = document.querySelector(".area-header");
-const areaMain = document.querySelector(".area-main");
-const areaFooter = document.querySelector(".area-footer");
+const toggle = document.querySelector('#toggle');
+const areaHeader = document.querySelector('.area-header');
+const areaMain = document.querySelector('.area-main');
+const areaFooter = document.querySelector('.area-footer');
+const select = document.querySelector('.select');
 
 // EVENTOS
 shopButton.addEventListener('click', addItem);
 shopList.addEventListener('click', deleteItem);
 priceContainer.addEventListener('click', addPrice);
+
 
 /* ==============================================================*/
 
@@ -24,6 +26,7 @@ toggle.onclick = function () {
     areaMain.classList.toggle('active');
     areaFooter.classList.toggle('active');
     shopButton.classList.toggle('active');
+    select.classList.toggle('active');
 }
 
 function addItem(event) {
@@ -74,7 +77,11 @@ function deleteItem(e) {
     //DELETE ITEM
     if (item.classList[0] === 'trash-btn') {
         const shop = item.parentElement;
-        shop.remove();
+        //Animation
+        shop.classList.add("moved");
+        shop.addEventListener('transitionend', function() {
+            shop.remove();
+        })
     }
 
     //CHECK MARK

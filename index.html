@@ -35,7 +35,6 @@
             <div id="toggle">
                 <i class="indicator"></i>
             </div>
-            <!-- <h1>Shop List</h1> -->
         </header>
     </section>
 
@@ -46,16 +45,26 @@
                 <button class="shop-button" type="submit">
                     <i class="fas fa-plus-square"></i>
                 </button>
+
+                <!-- Filtro: ‘Todos os itens’, ‘Comprados’, ‘Pendentes’ -->
+                <div class="select">
+                    <select name="shops" class="filter-shop">
+                        <option value="todos">Todos</option>
+                        <option value="comprados">Comprados</option>
+                        <option value="pendentes">Pendentes</option>
+                    </select>
+                </div>
+
+                <div class="price-container">
+                    <h1>Total:</h1>
+                    <span>R$ </span>
+                </div>
             </form>
 
             <div class="shop-container">
                 <ul class="shop-list"></ul>
                 <!-- Products will be here -->
-            </div>
-
-            <div class="price-container">
-                <span>Valor R$: </span>
-
+                
             </div>
         </main>
     </section>
