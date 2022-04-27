@@ -2,7 +2,7 @@
 const shopInput = document.querySelector(".shop-input");
 const shopButton = document.querySelector(".shop-button");
 const shopList = document.querySelector(".shop-list");
-const priceContainer = document.querySelector(".price-container");
+const shopFilter = document.querySelector('.shop-filter');
 
 //Seletores do DarkMode
 const toggle = document.querySelector('#toggle');
@@ -14,13 +14,15 @@ const select = document.querySelector('.select');
 // EVENTOS
 shopButton.addEventListener('click', addItem);
 shopList.addEventListener('click', deleteItem);
-priceContainer.addEventListener('click', addPrice);
-
+shopFilter.addEventListener('click', filterShop);
 
 /* ==============================================================*/
 
-// FUNÇÕES
-toggle.onclick = function () {
+//Botão DARK-MODE
+toggle.onclick = function (event) {
+    //Prevent form from submitting
+    event.preventDefault();
+
     toggle.classList.toggle('active');
     areaHeader.classList.toggle('active');
     areaMain.classList.toggle('active');
@@ -43,22 +45,19 @@ function addItem(event) {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('item');
 
-        //CHECKBOX
+        //Criando CHECKBOX
         const checkBox = document.createElement('button');
         checkBox.innerHTML = '<i class="fas fa-check"></i>';
         checkBox.classList.add("checkbox-btn");
         itemDiv.appendChild(checkBox);
 
-        //LI
+        //Criando LI
         const newItem = document.createElement('li');
         newItem.innerText = shopInput.value;
         newItem.classList.add('shop-item');
-        itemDiv.appendChild(newItem);
+        itemDiv.appendChild(newItem);      
 
-        //INPUT PRICE
-        //addPrice();        
-
-        //CHECK TRASH BUTTON
+        //Criando TRASH BUTTON
         const trashButton = document.createElement('button');
         trashButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
         trashButton.classList.add("trash-btn");
@@ -67,19 +66,19 @@ function addItem(event) {
         //APPEND TO LIST
         shopList.appendChild(itemDiv);
 
-        //CLEAR INPUT
+        //LIMPAR INPUT
         shopInput.value = "";
     }
 }
 
 function deleteItem(e) {
     const item = e.target;
-    //DELETE ITEM
+    //DELETAR ITEM
     if (item.classList[0] === 'trash-btn') {
         const shop = item.parentElement;
-        //Animation
+        //Animação
         shop.classList.add("moved");
-        shop.addEventListener('transitionend', function() {
+        shop.addEventListener('transitionend', function () {
             shop.remove();
         })
     }
@@ -91,12 +90,61 @@ function deleteItem(e) {
     }
 }
 
+//Filtro para exibir ‘Todos os itens’, ‘Comprados’, ‘Pendentes’.
+function filterShop(e) {
+    const shops = shopList.childNodes;
+    shops.forEach(function (item) {
+        switch (e.target.value) {
+            case "todos":
+                item.style.display = 'flex';
+                break;
+            case "comprados":
+                if (item.classList.contains('checked')) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+                break;
+
+            case "pendentes":
+                if (!item.classList.contains('checked')) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+
+                break;
+        }
+    });
+
+}
+
 function addPrice(e) {
 
     //Prevent form from submitting
     e.preventDefault();
 
-    //CREATE DIV
-    let price = window.prompt("Informe o valor do item: R$ ");
-}
+    //ITEM SPAN
+    const priceSpan = document.createElement('span');
+    priceSpan.classList.add('price');
 
+    //Criando DIV
+    let price = window.prompt("Informe o valor do item: R$ ");
+
+
+
+
+    /*
+    //ITEM SPAN
+    const priceSpan = document.createElement('span');
+    priceSpan.classList.add('price');
+
+    //CREATE DIV
+    priceSpan = window.prompt("Informe o valor do item: R$ ");
+    */
+    
+
+    //APPEND TO LIST
+    priceContainer.appendChild(priceSpan);
+
+}
