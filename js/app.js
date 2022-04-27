@@ -31,7 +31,7 @@ function addItem(event) {
     //Prevent form from submitting
     event.preventDefault();
 
-    //VERIFICAÇÃO: Campo vazio e entrada vazia
+    //VERIFICATION: Campo vazio e entrada vazia
     if (shopInput.value == "" || shopInput.value.trim() == "") {
         window.alert("Item sem descrição! Por favor, informe a descrição do item.");
     } else {
@@ -40,10 +40,10 @@ function addItem(event) {
         const itemDiv = document.createElement('div');
         itemDiv.classList.add('item');
 
-        //CHECKBOX MARK
+        //CHECKBOX
         const checkBox = document.createElement('button');
-        checkBox.innerHTML = '<input type="checkbox" class="checkbox">';
-        checkBox.classList.add("complete-btn");
+        checkBox.innerHTML = '<i class="fas fa-check"></i>';
+        checkBox.classList.add("checkbox-btn");
         itemDiv.appendChild(checkBox);
 
         //LI
@@ -78,9 +78,9 @@ function deleteItem(e) {
     }
 
     //CHECK MARK
-    if (item.classList[0] === 'complete-btn') {
+    if (item.classList[0] === 'checkbox-btn') {
         const shop = item.parentElement;
-        shop.classList.toogle('active');
+        shop.classList.toggle("checked");
     }
 }
 
