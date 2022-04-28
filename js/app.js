@@ -12,6 +12,7 @@ const areaFooter = document.querySelector('.area-footer');
 const select = document.querySelector('.select');
 
 // EVENTOS
+document.addEventListener('DOMContentLoaded', getItems);
 shopButton.addEventListener('click', addItem);
 shopList.addEventListener('click', deleteItem);
 shopFilter.addEventListener('click', filterShop);
@@ -57,6 +58,9 @@ function addItem(event) {
         newItem.classList.add('shop-item');
         itemDiv.appendChild(newItem);
 
+        /* ======= Adicionando os itens no LocalStorage ======= */
+        saveItemLocal(shopInput.value);
+
         //Criando TRASH BUTTON
         const trashButton = document.createElement('button');
         trashButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
@@ -65,9 +69,6 @@ function addItem(event) {
 
         //APPEND TO LIST
         shopList.appendChild(itemDiv);
-
-        /* ======= Adicionando os itens no LocalStorage ======= */ 
-        saveItemLocal(shopInput.value);
 
         //LIMPAR INPUT
         shopInput.value = "";
@@ -85,6 +86,7 @@ function deleteItem(e) {
 
         //Animação
         shop.classList.add("moved");
+        removeLocalItems(item);
         shop.addEventListener('transitionend', function () {
             shop.remove();
         })
@@ -125,55 +127,74 @@ function filterShop(e) {
     });
 }
 
-//SELETORES POP-UP
-const priceContainer = document.querySelector('.price-container');
-const priceButton = document.querySelector('.checkbox-btn');
-const checkedButton = document.querySelector('.checked');
-
-// EVENTOS
-
-//Função Preço Na Tela
-function addPrice(e) {
-
-    //Prevent form from submitting
-    e.preventDefault();
-
-    //Botão AddPrice
-    checkedButton.onclick = function (event) {
-        //Prevent form from submitting
-        event.preventDefault();
-
-        toggle.classList.toggle('div.item.checked');
-
-        //ITEM DIV
-        const priceSpan = document.createElement('span');
-        priceSpan.classList.add(price);
-        //APPEND TO PriceContainer
-        priceContainer.appendChild(priceSpan);
-
-        //Criar INPUT TEXT
-        var price = window.prompt("Informe o valor do item: R$ ");
-        price = [];
-
-        //APPEND TO PriceContainer
-        priceSpan.appendChild(price);
-
-
-
-
-
-
-
-        /*
-        //ITEM SPAN
-        const priceSpan = document.createElement('span');
-        priceSpan.classList.add('price');
-    
-        //CREATE DIV
-        priceSpan = window.prompt("Informe o valor do item: R$ ");
-        */
-
-
-
+//Salvar Itens no Armazenamento Local
+function saveItemLocal(item) {
+    let items;
+    if (localStorage.getItem("items") === null) {
+        items = [];
+    } else {
+        items = JSON.parse(localStorage.getItem("items"));
     }
+    items.push(item);
+    localStorage.setItem("items", JSON.stringify(items));
+}
+
+//Pegar item do Local Storage
+function getItems() {
+    let items;
+    if (localStorage.getItem("items") === null) {
+        items = [];
+    } else {
+        items = JSON.parse(localStorage.getItem("items"));
+    }
+    items.forEach(function (item) {
+        //ITEM DIV
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('item');
+
+        //Criando CHECKBOX
+        const checkBox = document.createElement('button');
+        checkBox.innerHTML = '<i class="fas fa-check"></i>';
+        checkBox.classList.add("checkbox-btn");
+        itemDiv.appendChild(checkBox);
+
+        //Criando LI
+        const newItem = document.createElement('li');
+        newItem.innerText = item;
+        newItem.classList.add('shop-item');
+        itemDiv.appendChild(newItem);
+
+        //Criando TRASH BUTTON
+        const trashButton = document.createElement('button');
+        trashButton.innerHTML = '<i class="fa-solid fa-trash"></i>';
+        trashButton.classList.add("trash-btn");
+        itemDiv.appendChild(trashButton);
+
+        //APPEND TO LIST
+        shopList.appendChild(itemDiv);
+    });
+}
+
+//Remover item do Local Storage
+function removeLocalItems(item) {
+    let items;
+    if (localStorage.getItem("items") === null) {
+        items = [];
+    } else {
+        items = JSON.parse(localStorage.getItem("items"));
+    }
+    const itemIndex = item.children[0].innerText;
+    items.splice(items.indexOf(itemIndex), 1);
+    localStorage.setItem('items', JSON.stringify(items));
+}
+
+//SELETOR POP-UP button
+const priceButton = document.querySelector('div.item.checked');
+
+//POP-UP button
+$(".checked").click = function (event) {
+    //Prevent form from submitting
+    event.preventDefault();
+
+    console.log('Hello');
 }
