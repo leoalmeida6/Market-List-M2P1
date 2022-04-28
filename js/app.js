@@ -36,7 +36,7 @@ function addItem(event) {
     //Prevent form from submitting
     event.preventDefault();
 
-    //VERIFICATION: Campo vazio e entrada vazia
+    //VERIFICAÇÃO: Campo vazio e entrada vazia
     if (shopInput.value == "" || shopInput.value.trim() == "") {
         window.alert("Item sem descrição! Por favor, informe a descrição do item.");
     } else {
@@ -55,7 +55,7 @@ function addItem(event) {
         const newItem = document.createElement('li');
         newItem.innerText = shopInput.value;
         newItem.classList.add('shop-item');
-        itemDiv.appendChild(newItem);      
+        itemDiv.appendChild(newItem);
 
         //Criando TRASH BUTTON
         const trashButton = document.createElement('button');
@@ -66,16 +66,23 @@ function addItem(event) {
         //APPEND TO LIST
         shopList.appendChild(itemDiv);
 
+        /* ======= Adicionando os itens no LocalStorage ======= */ 
+        saveItemLocal(shopInput.value);
+
         //LIMPAR INPUT
         shopInput.value = "";
     }
 }
 
+/* ================================================*/
+
+//Função DELETAR ITEM
 function deleteItem(e) {
     const item = e.target;
-    //DELETAR ITEM
+
     if (item.classList[0] === 'trash-btn') {
         const shop = item.parentElement;
+
         //Animação
         shop.classList.add("moved");
         shop.addEventListener('transitionend', function () {
@@ -116,35 +123,57 @@ function filterShop(e) {
                 break;
         }
     });
-
 }
 
+//SELETORES POP-UP
+const priceContainer = document.querySelector('.price-container');
+const priceButton = document.querySelector('.checkbox-btn');
+const checkedButton = document.querySelector('.checked');
+
+// EVENTOS
+
+//Função Preço Na Tela
 function addPrice(e) {
 
     //Prevent form from submitting
     e.preventDefault();
 
-    //ITEM SPAN
-    const priceSpan = document.createElement('span');
-    priceSpan.classList.add('price');
+    //Botão AddPrice
+    checkedButton.onclick = function (event) {
+        //Prevent form from submitting
+        event.preventDefault();
 
-    //Criando DIV
-    let price = window.prompt("Informe o valor do item: R$ ");
+        toggle.classList.toggle('div.item.checked');
+
+        //ITEM DIV
+        const priceSpan = document.createElement('span');
+        priceSpan.classList.add(price);
+        //APPEND TO PriceContainer
+        priceContainer.appendChild(priceSpan);
+
+        //Criar INPUT TEXT
+        var price = window.prompt("Informe o valor do item: R$ ");
+        price = [];
+
+        //APPEND TO PriceContainer
+        priceSpan.appendChild(price);
 
 
 
 
-    /*
-    //ITEM SPAN
-    const priceSpan = document.createElement('span');
-    priceSpan.classList.add('price');
 
-    //CREATE DIV
-    priceSpan = window.prompt("Informe o valor do item: R$ ");
-    */
+
+
+        /*
+        //ITEM SPAN
+        const priceSpan = document.createElement('span');
+        priceSpan.classList.add('price');
     
+        //CREATE DIV
+        priceSpan = window.prompt("Informe o valor do item: R$ ");
+        */
 
-    //APPEND TO LIST
-    priceContainer.appendChild(priceSpan);
 
+
+    }
 }

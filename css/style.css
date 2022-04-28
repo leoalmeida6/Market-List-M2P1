@@ -158,7 +158,7 @@ select {
     align-items: center;
     flex-direction: column;
 
-    position: inherit;
+    position: absolute;
 }
 
 .area-footer.active {
@@ -324,18 +324,27 @@ form button.active:hover {
     transition: all 0.3s ease;
 }
 
+.shop-filter {
+    background: white;
+}
+
 
 /* ======= PRICE CONTAINER - TESTE ======= */
 .price-container {
     height: 17vh;
     width: 17vw;
 
+    padding: 8px;
 
-    background: red;
-    color: white;
+    background: white;
+
+    border: 1px solid black;
+    border-radius: 8px;
+    color: black;
 
     position: fixed;
-    top: 42rem;
+    /*top: 42rem;*/
+    top: 16rem;
     right: 3rem;
 }
 
