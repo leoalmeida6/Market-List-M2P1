@@ -47,7 +47,7 @@ function addItem(event) {
         itemDiv.classList.add('item');
 
         //Criando CHECKBOX
-        const checkBox = document.createElement('button');
+        var checkBox = document.createElement('button');
         checkBox.innerHTML = '<i class="fas fa-check"></i>';
         checkBox.classList.add("checkbox-btn");
         itemDiv.appendChild(checkBox);
@@ -186,15 +186,4 @@ function removeLocalItems(item) {
     const itemIndex = item.children[0].innerText;
     items.splice(items.indexOf(itemIndex), 1);
     localStorage.setItem('items', JSON.stringify(items));
-}
-
-//SELETOR POP-UP button
-const priceButton = document.querySelector('div.item.checked');
-
-//POP-UP button
-$(".checked").click = function (event) {
-    //Prevent form from submitting
-    event.preventDefault();
-
-    console.log('Hello');
 }
