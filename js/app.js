@@ -47,7 +47,7 @@ function addItem(event) {
         itemDiv.classList.add('item');
 
         //Criando CHECKBOX
-        var checkBox = document.createElement('button');
+        const checkBox = document.createElement('button');
         checkBox.innerHTML = '<i class="fas fa-check"></i>';
         checkBox.classList.add("checkbox-btn");
         itemDiv.appendChild(checkBox);
