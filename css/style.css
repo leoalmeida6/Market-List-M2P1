@@ -60,6 +60,11 @@ select {
     -moz-appearance: none;
 }
 
+p {
+    font-size: 16px;
+    font-weight: bold;
+}
+
 /* ======= CLASSES ======= */
 
 /* ======= DARK MODE BUTTON =======*/
@@ -277,11 +282,6 @@ form button.active:hover {
     opacity: 0.5;
 }
 
-[type="checkbox"]:not(:checked),
-[type="checkbox"]:checked {
-  background: red;
-}
-
 /* Animation when delete item*/
 .moved {
     transform: translate(15rem);
@@ -334,11 +334,10 @@ form button.active:hover {
     background: white;
 }
 
-
-/* ======= PRICE CONTAINER - TESTE ======= */
+/* ======= PRICE CONTAINER ======= */
 .price-container {
-    height: 17vh;
-    width: 25vw;
+    height: 25vh;
+    width: 17vw;
 
     padding: 8px;
 
@@ -353,18 +352,13 @@ form button.active:hover {
     right: 3rem;
 }
 
-.item-price div {
+.item-price {
     height: 2rem;
     width: 2rem;
     background: blue;
     float: right;
     margin-right: 13.5%;
 }
-
-/* ======= PRICE CONTAINER - TESTE ======= */
-
-
-
 
 /* ======= ANIMATION ======= */
 .my-element {

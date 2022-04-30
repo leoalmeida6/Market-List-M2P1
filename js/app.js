@@ -3,6 +3,7 @@ const shopInput = document.querySelector(".shop-input");
 const shopButton = document.querySelector(".shop-button");
 const shopList = document.querySelector(".shop-list");
 const shopFilter = document.querySelector('.shop-filter');
+const priceList = document.querySelector(".price-list");
 
 //Seletores do DarkMode
 const toggle = document.querySelector('#toggle');
@@ -38,8 +39,12 @@ function addItem(event) {
     event.preventDefault();
 
     //VERIFICAÇÃO: Campo vazio e entrada vazia
-    if (shopInput.value == "" || shopInput.value.trim() == "") {
+    if (shopInput.value == "") {
         window.alert("Item sem descrição! Por favor, informe a descrição do item.");
+    } else if (shopInput.value.trim() == "") {
+        window.alert("Descrição apenas com espaçamento! Por favor, informe a descrição correta do item.");
+    } else if (!isNaN(shopInput.value)) {
+        window.alert("Descrição apenas com número! Por favor, informe a descrição correta do item.");
     } else {
 
         //ITEM DIV
@@ -50,6 +55,7 @@ function addItem(event) {
         const checkBox = document.createElement('button');
         checkBox.innerHTML = '<i class="fas fa-check"></i>';
         checkBox.classList.add("checkbox-btn");
+        checkBox.setAttribute("id", "#teste");
         itemDiv.appendChild(checkBox);
 
         //Criando LI
@@ -95,8 +101,17 @@ function deleteItem(e) {
     //CHECK MARK
     if (item.classList[0] === 'checkbox-btn') {
         const shop = item.parentElement;
+
+        var price = [];
+        price.push(prompt("Informe o valor do item: R$ "));
         shop.classList.toggle("checked");
     }
+}
+
+//Modal
+function iniciaModal(mostraID) {
+    const popup = document.getElementById(mostraID);
+    console.log(popup);
 }
 
 //Filtro para exibir ‘Todos os itens’, ‘Comprados’, ‘Pendentes’.
@@ -121,7 +136,6 @@ function filterShop(e) {
                 } else {
                     item.style.display = 'none';
                 }
-
                 break;
         }
     });
@@ -137,6 +151,18 @@ function saveItemLocal(item) {
     }
     items.push(item);
     localStorage.setItem("items", JSON.stringify(items));
+}
+
+//Salvar Preços no Armazenamento Local
+function savePriceLocal(price) {
+    let prices;
+    if (localStorage.getItem("prices") === null) {
+        prices = [];
+    } else {
+        prices = JSON.parse(localStorage.getItem("prices"));
+    }
+    prices.push(price);
+    localStorage.setItem("prices", JSON.stringify(prices));
 }
 
 //Pegar item do Local Storage
@@ -175,6 +201,30 @@ function getItems() {
     });
 }
 
+//Pegar item do Local Storage
+function getPrices() {
+    let prices;
+    if (localStorage.getPrices("prices") === null) {
+        prices = [];
+    } else {
+        prices = JSON.parse(localStorage.getPrices("prices"));
+    }
+    prices.forEach(function (price) {
+        //ITEM DIV
+        const priceDiv = document.createElement('div');
+        priceDiv.classList.add('price');
+
+        //Criando LI
+        const newPrice = document.createElement('li');
+        newPrice.innerText = price;
+        newPrice.classList.add('price-item');
+        priceDiv.appendChild(newPrice);
+
+        //APPEND TO LIST
+        priceList.appendChild(priceDiv);
+    });
+}
+
 //Remover item do Local Storage
 function removeLocalItems(item) {
     let items;
@@ -186,4 +236,17 @@ function removeLocalItems(item) {
     const itemIndex = item.children[0].innerText;
     items.splice(items.indexOf(itemIndex), 1);
     localStorage.setItem('items', JSON.stringify(items));
+}
+
+//Remover item do Local Storage
+function removeLocalPrice(price) {
+    let prices;
+    if (localStorage.getPrice("prices") === null) {
+        prices = [];
+    } else {
+        prices = JSON.parse(localStorage.getPrice("prices"));
+    }
+    const priceIndex = price.children[0].innerText;
+    items.splice(items.indexOf(itemIndex), 1);
+    localStorage.setPrice('prices', JSON.stringify(prices));
 }
