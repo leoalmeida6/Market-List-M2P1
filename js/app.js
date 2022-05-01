@@ -101,18 +101,36 @@ function deleteItem(e) {
     //CHECK MARK
     if (item.classList[0] === 'checkbox-btn') {
         const shop = item.parentElement;
-
-        var price = [];
-        price.push(prompt("Informe o valor do item: R$ "));
         shop.classList.toggle("checked");
+
+        //POPUP MODAL
+        const popup = document.querySelector('.checkbox-btn');
+        popup.addEventListener('click', (e) => {
+            if(e.target.id == modalID || e.target.className == 'fechar') {
+                modal.classList.remove('mostrar');
+                localStorage.fechaModal = modalID;
+            }
+        })
+
+        iniciaModal('modal-promocao');
     }
 }
 
 //Modal
-function iniciaModal(mostraID) {
-    const popup = document.getElementById(mostraID);
-    console.log(popup);
+function iniciaModal(modalID) {
+    const abriModal = document.getElementById(modalID);
+    abriModal.classList.add('mostrar');
 }
+
+function fechaModal(){
+    const fechaModal = document.querySelector('.fa-xmark').style.display = 'none';
+}
+
+/*
+        const logo = document.querySelector('.checkbox-btn');
+        logo.addEventListener('click', function () {
+*/
+
 
 //Filtro para exibir ‘Todos os itens’, ‘Comprados’, ‘Pendentes’.
 function filterShop(e) {
@@ -250,3 +268,13 @@ function removeLocalPrice(price) {
     items.splice(items.indexOf(itemIndex), 1);
     localStorage.setPrice('prices', JSON.stringify(prices));
 }
+
+/*
+function contadorItem(){
+    const quantidadeItem = JSON.parse(localStorage.getItem('itens')) || [];
+    const valorId = document.getElementById('total-item');
+    valorId.innerText = quantidadeItem.length;   
+}
+
+
+deleta item, savelocalitens, removelocal */

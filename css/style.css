@@ -273,7 +273,8 @@ form button.active:hover {
 }
 
 .fa-check,
-.fa-trash {
+.fa-trash,
+.fa-xmark {
     pointer-events: none;
 }
 
@@ -358,6 +359,127 @@ form button.active:hover {
     background: blue;
     float: right;
     margin-right: 13.5%;
+}
+
+/* ======= MODAL CONTAINER ======= */
+.modal-container {
+    height: 100vh;
+    width: 100vw;
+
+    /* From https://css.glass */
+    background: rgba(60, 60, 60, 0.96);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(19.8px);
+    -webkit-backdrop-filter: blur(19.8px);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    z-index: 2000;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-container.mostrar  {
+    display: flex;
+}
+
+.modal {
+    padding: 40px;
+
+    width: 60%;
+    min-width: 300px;
+
+    border-radius: 12px;
+    background: #00C89B;
+
+    position: relative;
+}
+
+/* Animation Modal */
+@keyframes modal {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -60px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.mostrar .modal {
+    animation: modal .3s;
+}
+
+.fechar {
+    height: 25px;
+    width: 25px;
+
+    color: black;
+    background: #e5e8e8;
+    border: none;
+    border-radius: 50%;
+
+    top: 5px;
+    right: 5px;
+    position: absolute;
+
+    cursor: pointer;
+}
+
+.fechar:hover {
+    color: white;
+    background: #F0544F;
+    transition: 0.5s;
+}
+
+.moeda {
+    height: 40px;
+    width: 40px;
+
+    color: #e5e8e8;
+
+    padding: 10px 0;
+    
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.input {
+    margin-left: 10px;
+    width: 60%;
+    min-width: 300px;
+}
+
+.subtitulo {
+    text-align: center;
+
+}
+
+.form-modal {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.price-btn {
+    min-height: 5vh;
+    min-width: 10vw;
+
+    background: #e5e8e8;
+    
+    text-align: center;
+    border-radius: 8px;
+}
+
+.price-btn:hover {
+    background: #F0544F;
+    color: white;
+    transition: 0.5s;
 }
 
 /* ======= ANIMATION ======= */
