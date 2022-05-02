@@ -41,8 +41,12 @@ function addItem(event) {
     //VERIFICAÇÃO: Campo vazio e entrada vazia
     if (shopInput.value == "") {
         window.alert("Item sem descrição! Por favor, informe a descrição do item.");
+        //LIMPAR INPUT
+        shopInput.value = "";
     } else if (shopInput.value.trim() == "") {
         window.alert("Descrição apenas com espaçamento! Por favor, informe a descrição correta do item.");
+        //LIMPAR INPUT
+        shopInput.value = "";
     } else if (!isNaN(shopInput.value)) {
         window.alert("Descrição apenas com número! Por favor, informe a descrição correta do item.");
     } else {
@@ -101,28 +105,33 @@ function deleteItem(e) {
     //CHECK MARK
     if (item.classList[0] === 'checkbox-btn') {
         const shop = item.parentElement;
-        shop.classList.toggle("checked");
 
+        
         //POPUP MODAL
         const popup = document.querySelector('.checkbox-btn');
-        popup.addEventListener('click', (e) => {
-            if(e.target.id == modalID || e.target.className == 'fechar') {
-                modal.classList.remove('mostrar');
-                localStorage.fechaModal = modalID;
-            }
-        })
 
-        iniciaModal('modal-promocao');
+        popup.addEventListener('click', iniciaModal('modal-promocao'));
+        shop.classList.toggle("checked");
     }
 }
 
 //Modal
 function iniciaModal(modalID) {
-    const abriModal = document.getElementById(modalID);
-    abriModal.classList.add('mostrar');
+    if (localStorage.fechaModal !== modalID) {
+        const modal = document.getElementById(modalID);
+        if (modal) {
+            modal.classList.add('mostrar');
+            modal.addEventListener('click', (e) => {
+                if (e.target.id == modalID || e.target.className == 'fechar') {
+                    modal.classList.remove('mostrar');
+                    localStorage.fechaModal = modalID;
+                }
+            });
+        }
+    }
 }
 
-function fechaModal(){
+function fechaModal() {
     const fechaModal = document.querySelector('.fa-xmark').style.display = 'none';
 }
 
@@ -169,6 +178,7 @@ function saveItemLocal(item) {
     }
     items.push(item);
     localStorage.setItem("items", JSON.stringify(items));
+    countItems();
 }
 
 //Salvar Preços no Armazenamento Local
@@ -217,6 +227,8 @@ function getItems() {
         //APPEND TO LIST
         shopList.appendChild(itemDiv);
     });
+
+    countItems();
 }
 
 //Pegar item do Local Storage
@@ -254,6 +266,8 @@ function removeLocalItems(item) {
     const itemIndex = item.children[0].innerText;
     items.splice(items.indexOf(itemIndex), 1);
     localStorage.setItem('items', JSON.stringify(items));
+
+    countItems();
 }
 
 //Remover item do Local Storage
@@ -267,14 +281,12 @@ function removeLocalPrice(price) {
     const priceIndex = price.children[0].innerText;
     items.splice(items.indexOf(itemIndex), 1);
     localStorage.setPrice('prices', JSON.stringify(prices));
+
+    countItems();
 }
 
-/*
-function contadorItem(){
-    const quantidadeItem = JSON.parse(localStorage.getItem('itens')) || [];
-    const valorId = document.getElementById('total-item');
-    valorId.innerText = quantidadeItem.length;   
+function countItems() {
+    const quantidadeItem = JSON.parse(localStorage.getItem('items')) || [];
+    const valorId = document.querySelector('.total-items');
+    valorId.innerText = quantidadeItem.length;
 }
-
-
-deleta item, savelocalitens, removelocal */

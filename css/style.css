@@ -208,6 +208,8 @@ form button.active:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    position: relative;
 }
 
 .shop-list {
@@ -480,6 +482,26 @@ form button.active:hover {
     background: #F0544F;
     color: white;
     transition: 0.5s;
+}
+
+/* ======= CONTADOR =======*/
+.area-contador {
+    background: #E5E8E8;
+    position: relative;
+}
+
+.contador {
+    background: #E5E8E8;
+    left: 1rem;
+    z-index: 1;
+    position: absolute;
+}
+
+.total-items {
+    background: #E5E8E8;
+    z-index: 1;
+    left: 12rem;
+    position: absolute;
 }
 
 /* ======= ANIMATION ======= */
